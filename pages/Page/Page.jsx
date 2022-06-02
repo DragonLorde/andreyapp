@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {GlobalStyle} from "../UI";
+import PressableButton, {GlobalStyle} from "../UI";
 import {ActivityIndicator} from "react-native";
 
 const {
@@ -15,6 +15,7 @@ const Page = ({ route, navigation }) => {
     const [loading, isLoading] = useState(true)
     const [cars, setCars] = useState()
     const { itemId } = route.params;
+    const [checkAutoState, setCheckAutoState] = useState(false)
 
     const getData = async () => {
         const response = await fetch(`https://laboratory-msk.online/v1.0/GetCar/${itemId}`)
@@ -27,7 +28,9 @@ const Page = ({ route, navigation }) => {
         () => {
             getData()
         }, [])
-
+    const checkAuto = () => {
+        setCheckAutoState(true)
+    }
     return (
         <MainContainer>
             <MainContainer>
@@ -38,7 +41,14 @@ const Page = ({ route, navigation }) => {
                         />
                         <CardTextTitle>{cars.title} </CardTextTitle>
                         <CardTextPrice> {cars.price} KK </CardTextPrice>
-                        <RegularText> {cars.text} </RegularText>
+                        <RegularText style={{
+                            marginBottom:20
+                        }}> {cars.text} </RegularText>
+                        <PressableButton title="Проверить авто" onPress={checkAuto} />
+                        {checkAutoState && ( <RegularText style={{
+                            color:'green',
+                            marginBottom:20,
+                        }}> С автомобилем все хорошо </RegularText> )}
                     </>
                 )}
             </MainContainer>

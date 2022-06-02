@@ -29,8 +29,11 @@ const Settings = () => {
     return (
         <MainContainer>
             <MainContainerMin>
-                <RegularText> Настройки </RegularText>
-                <PressableButton title="Сменить тему" onPress={switchTheme}/>
+                <RegularText style={{
+                    marginBottom:20
+                }}> Настройки </RegularText>
+                <PressableButton title="Сменить тему" onPress={switchTheme} />
+                <RegularText></RegularText>
                 <PressableButton title="Выйти"  onPress={logOut}/>
             </MainContainerMin>
         </MainContainer>
