@@ -10,6 +10,8 @@ const {
     CardTextTitle,
     Container,
     CustomImg,
+    PriceTitle,
+    CardTextTitlePrice,
 } = Styled
 
 const {
@@ -35,16 +37,41 @@ const MainPage = ({ navigation }) => {
         setCars(responseData)
     }
 
+    const getGoodPrice = (price) => {
+        if (price < 500000) {
+            return (
+                <PriceTitle color='rgba(88, 219, 124, 1)'>
+                    <CardTextTitlePrice> Хорошая цена </CardTextTitlePrice>
+                </PriceTitle>
+            )
+        }
+        else if (price < 2000000) {
+            return (
+                <PriceTitle color='rgba(194, 227, 204, 1)'>
+                    <CardTextTitlePrice> нормальная цена </CardTextTitlePrice>
+                </PriceTitle>
+            )
+        } else {
+            return (
+                <PriceTitle color='rgba(213, 214, 215, 1)'>
+                    <CardTextTitlePrice> высокая цена </CardTextTitlePrice>
+                </PriceTitle>
+            )
+        }
+    }
+
     const renderItem = ( {item, index} ) => {
+        const priceCheckItem = getGoodPrice(item.price)
         return (
             <Card key={index} onPress={() => {
                 navigation.navigate("Page", {
                     itemId: item.id
                 })
             }}>
+                {priceCheckItem}
                 <CustomImg source={{uri: item.img}} />
                 <CardTextTitle > {item.title} </CardTextTitle>
-                <CardTextPrice > {item.price}KK </CardTextPrice>
+                <CardTextPrice > {item.price} Р </CardTextPrice>
             </Card>
         )
     }

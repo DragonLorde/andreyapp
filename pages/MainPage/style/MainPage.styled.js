@@ -10,9 +10,10 @@ const Container = styled.FlatList`
 const Card = styled.TouchableOpacity`
   border-radius: 12px;
   background: #FBFBFD;
-  max-height: 160px;
-  min-height: 160px;
-  width: 90%;
+  //max-height: 160px;
+  min-height: 180px;
+  height: auto;
+  width: auto;
   margin: 20px;
   flex: 1;
   align-items: center;
@@ -43,10 +44,30 @@ const CardTextPrice = styled.Text`
   color: #FF8C05;
 `
 
+const PriceTitle = styled.View`
+  width: auto;
+  padding: 3px;
+  height: 30px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 12px;
+  background-color: ${(props) => props.color};
+`
+
+const CardTextTitlePrice = styled.Text`
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  text-align: center;
+  color: white;
+`
+
 export const Styled = {
     Card,
     CardTextPrice,
     CardTextTitle,
     CustomImg,
     Container,
+    PriceTitle,
+    CardTextTitlePrice,
 }

@@ -112,7 +112,7 @@ const CardTextPrice = styled.Text`
   font-weight: 700;
   font-size: 28px;
   margin-top: 10px;
-
+  
   color: #FF8C05;
 `
 

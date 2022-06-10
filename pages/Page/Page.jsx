@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import PressableButton, {GlobalStyle} from "../UI";
-import {ActivityIndicator} from "react-native";
+import { ActivityIndicator } from "react-native";
 
 const {
     MainContainer,
@@ -24,6 +24,56 @@ const Page = ({ route, navigation }) => {
         isLoading(false)
     }
 
+    const stateCarText = [
+        {
+            gib: "ДТП не найдено, не в угоне",
+            rsa: "Страховка есть",
+            easito: "Пробег не скручен",
+        },
+        {
+            gib: "Есть ДТП, не в угоне",
+            rsa: "Страховка есть",
+            easito: "Пробег не скручен",
+        },
+        {
+            gib: "ДТП не найдено, в угоне!",
+            rsa: "Страховки нет",
+            easito: "Пробег не скручен",
+        },
+        {
+            gib: "ДТП не найдено, не в угоне",
+            rsa: "Страховки нет",
+            easito: "Пробег скручен !",
+        }
+    ]
+
+    const getRandomText = () => {
+        const rand =  ~~(Math.random()*stateCarText.length)
+        const text = stateCarText[ rand ]
+        return (
+            <>
+                <RegularText style={{
+                    color:'green',
+                    marginBottom:20,
+                }}>
+                    ГИББД: {text.gib}
+                </RegularText>
+                <RegularText style={{
+                    color:'green',
+                    marginBottom:10,
+                }}>
+                    РСА: {text.rsa}
+                </RegularText>
+                <RegularText style={{
+                    color:'green',
+                    marginBottom:10,
+                }}>
+                    ЕАСИТО: {text.easito}
+                </RegularText>
+            </>
+        )
+    }
+
     useEffect(
         () => {
             getData()
@@ -31,6 +81,7 @@ const Page = ({ route, navigation }) => {
     const checkAuto = () => {
         setCheckAutoState(true)
     }
+    getRandomText()
     return (
         <MainContainer>
             <MainContainer>
@@ -45,10 +96,7 @@ const Page = ({ route, navigation }) => {
                             marginBottom:20
                         }}> {cars.text} </RegularText>
                         <PressableButton title="Проверить авто" onPress={checkAuto} />
-                        {checkAutoState && ( <RegularText style={{
-                            color:'green',
-                            marginBottom:20,
-                        }}> С автомобилем все хорошо </RegularText> )}
+                        {checkAutoState && getRandomText()}
                     </>
                 )}
             </MainContainer>
